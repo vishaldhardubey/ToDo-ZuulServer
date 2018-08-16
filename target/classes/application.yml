@@ -1,0 +1,24 @@
+#application name for zuul server
+spring: 
+   application:
+    name: zuulserver
+    
+#port number assigned to zuul server
+server:
+  port: 8093
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8090/eureka}
+      
+#routes provided to the zuul server
+zuul: 
+  routes:
+    subway:
+       service-id: userservice
+       path: /user/**
+       url: "http://localhost:8091/"
+    subway1:
+       service-id: noteservice
+       path: /note/**
+       url: "http://localhost:8092/"
